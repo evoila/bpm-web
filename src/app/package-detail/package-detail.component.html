@@ -1,0 +1,27 @@
+<div class="package-detail">
+  <dl>
+    <dt>Description:</dt>
+    <dd>{{package.description}}</dd>
+    <dt> Stemcell: </dt>
+    <dd>{{package.stemcell}}</dd>
+    <dl>
+      <dt>Files:</dt>          
+      <dd *ngFor="let file of package.files">{{file}}</dd>
+    </dl>
+    <dt>Release date:</dt>
+    <dd>{{package.uploadDate}}</dd>
+    <dl>
+      <dt>Dependencies:</dt>
+      <dd>
+        <ngb-accordion *ngFor="let dependency of dependencies" #acc="ngbAccordion" activeIds="ngb-panel-0">
+          <ngb-panel title="{{dependency.name}}:{{dependency.version}} by {{dependency.vendor}}">
+            <ng-template ngbPanelContent>        
+              <package-detail [package] ="dependency">
+              </package-detail>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+      </dd>
+    </dl>
+  </dl>
+</div>
